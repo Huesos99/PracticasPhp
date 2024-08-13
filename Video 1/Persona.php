@@ -23,3 +23,4 @@ $persona1 = new Persona('José', 'Rodríguez'); // Al hacer un "new Persona" se 
 $persona2 = new Persona('Juan', 'Mata');
 
 echo "{$persona1->fullName()} es amigo de {$persona2->fullname()}";
+
