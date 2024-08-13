@@ -4,23 +4,38 @@ declare(strict_types=1);
 
 final class Persona {
     public $firstName; // Propiedad
-    public $lastName; // Propiedad
+    public $lastName;
+    public $location;
 
-    public function __construct($firstName, $lastName)
+    public function __construct($firstName, $lastName, $location)
     {
         $this->firstName = $firstName;
         $this->lastName =  $lastName;
+        $this->location =  $location;
     }
-
+    
+    public function firstName(): string
+    {
+        return $this->firstName;
+    }
+    
+    public function location(): string
+    {
+        return $this->location;
+    }
+    
     public function fullName(): string // Metodo
     {
         return $this->firstName . " " . $this->lastName;
     }
+    
 }
 
-$persona1 = new Persona('José', 'Rodríguez'); // Al hacer un "new Persona" se crea una instancia de la clase
+$person1 = new Persona('José', 'Rodríguez', 'San José');
 
-$persona2 = new Persona('Juan', 'Mata');
+$person2 = new Persona('Juan', 'Mata','Tunapuy');
 
-echo "{$persona1->fullName()} es amigo de {$persona2->fullname()}";
+echo "{$person1->fullName()} is friend of {$person2->fullname()}
+       but {$person1->firstName()} live in {$person1->location()}
+        and {$person2->firstName()} live in {$person2->location()}";
 
