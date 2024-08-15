@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require_once 'Procesador.php';
-final class intel extends Procesador
+final class intel extends Procesador //Herencia y abstracción con PHP
 {
     private $name;
     private $consumption;

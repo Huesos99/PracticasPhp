@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-abstract class Procesador
+abstract class Procesador //Herencia y abstracción con PHP
 {
         protected $generation;
         protected $model;
