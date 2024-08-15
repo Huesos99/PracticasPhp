@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require_once 'Procesador.php';
-final class Ryzen extends Procesador //Herencia y abstracción con PHP
+final class Amd extends Procesador //Herencia y abstracción con PHP
 {
     private $name;
     private $consumption;
@@ -56,7 +56,7 @@ final class Ryzen extends Procesador //Herencia y abstracción con PHP
     }
 }
 
-$procesador = new Ryzen(
+$procesador = new Amd(
     '3',
     '3200g',
     3.6,
