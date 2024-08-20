@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 abstract class Unit
 {
-    protected $health = 50;
-    protected $damage = 40;
+    protected $health;
+    protected $damage;
     protected $name;
 
     public function __construct(string $name)
