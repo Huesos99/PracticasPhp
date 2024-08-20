@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once 'Unit.php';
 
-class Soldier extends Unit
+final class Soldier extends Unit
 {
     protected $health = 120;
     protected $damage = 35;
