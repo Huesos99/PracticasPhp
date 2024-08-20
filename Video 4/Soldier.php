@@ -6,22 +6,23 @@ require_once 'Unit.php';
 
 class Soldier extends Unit
 {
-    protected $health = 50;
-    protected $damage = 50;
+    protected $health = 120;
+    protected $damage = 35;
 
     public function attack(Unit $opponent): void
     {
-        $opponent->setHealth($opponent->getHealth() - $this->damage);
+        if ($this->health <= 0) {
+            return;
+        }
+
+        echo "{$this->name} attack {$opponent->getName()} \n";
+        $opponent->takeDamage($this->damage);
+
     }
 
-    public function getHealth(): int
+    public function takeDamage($damage): void
     {
-        return $this->health;
-    }
-
-    public function setHealth(int $health): void
-    {
-        $this->health = $health;
+        parent::takeDamage($damage / 2);
     }
 
 }

@@ -6,22 +6,26 @@ require_once 'Unit.php';
 
 class Archer extends Unit
 {
-    protected $health = 30;
-    protected $damage = 30;
+    protected $health = 100;
+    protected $damage = 70;
 
     public function attack(Unit $opponent): void
     {
-        $opponent->setHealth($opponent->getHealth() - $this->damage);
+        if ($this->health <= 0) {
+            return;
+        }
+        echo "{$this->name} shoots an arrow at {$opponent->getName()}\n";
+        $opponent->takeDamage($this->damage);
     }
 
-    public function getHealth(): int
+    public function takeDamage($damage): void
     {
-        return $this->health;
-    }
+        if (rand(0, 1)) {
+            parent::takeDamage($damage * 0);
+            echo "{$this->name} dodges the attack\n";
+        }else{
+            parent::takeDamage($damage);
+        }
 
-    public function setHealth(int $health): void
-    {
-        $this->health = $health;
     }
-
 }

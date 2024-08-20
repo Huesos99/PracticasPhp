@@ -4,31 +4,40 @@ declare(strict_types=1);
 
 abstract class Unit
 {
-    protected $health = 40;
+    protected $health = 50;
     protected $damage = 40;
+    protected $name;
 
-    public function getHealth(): int
+    public function __construct(string $name)
     {
-        return $this->health;
+        $this->name = $name;
     }
 
-    public function setHealth(int $health): void
+    public function getName(): string
     {
-        $this->health = $health;
+        return $this->name;
     }
 
-    public function getDamage(): int
+    public function getHealth(): float
     {
-        return $this->damage;
+        return (float) number_format($this->health, 2);
+    }
+    public abstract function attack(Unit $opponent): void;
+
+    public function die()
+    {
+        if ($this->health <= 0) {
+            echo "{$this->name} has died\n";
+        }
     }
 
-    public function setDamage(int $damage): void
+    public function takeDamage($damage)
     {
-        $this->damage = $damage;
+        $this->health -= $damage;
+
+        if ($this->health <= 0) {
+            $this->die();
+        }
     }
 
-    public function attack(Unit $opponent): void
-    {
-        $opponent->setHealth($opponent->getHealth() - $this->damage);
-    }
 }
