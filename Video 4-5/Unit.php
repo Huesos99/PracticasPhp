@@ -29,15 +29,22 @@ abstract class Unit
         if ($this->health <= 0) {
             echo "{$this->name} has died\n";
         }
+
+        exit();
     }
 
-    public function takeDamage($damage)
+    public function takeDamage($damage): void
     {
-        $this->health -= $damage;
+        $this->health -= $this->absorbDamage($damage);
 
         if ($this->health <= 0) {
             $this->die();
         }
+    }
+
+    public function absorbDamage($damage): float
+    {
+        return $damage;
     }
 
 }

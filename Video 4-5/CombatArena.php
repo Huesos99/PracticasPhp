@@ -4,14 +4,21 @@ declare(strict_types=1);
 
 require_once 'Soldier.php';
 require_once 'Archer.php';
+require_once 'SilverArmor.php';
+require_once 'LightArmor.php';
 
 final class CombatArena
 {
     private $round = 1;
+    private $soldierArmor;
+    private $archerArmor;
+
     public function __construct()
     {
-        $this->soldier = new Soldier('Juan');
-        $this->archer = new Archer('Jose');
+        $this->archerArmor = new LightArmor();
+        $this->soldierArmor = new SilverArmor();
+        $this->soldier = new Soldier('Juan',$this->soldierArmor);
+        $this->archer = new Archer('Jose',$this->archerArmor);
     }
 
     public function startCombat(): void
