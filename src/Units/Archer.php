@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-require_once 'Unit.php';
+namespace Styde\Units;
+
+use Styde\Armors\Armor;
 
 class Archer extends Unit
 {
@@ -10,7 +12,7 @@ class Archer extends Unit
     protected $damage = 60;
     protected $armor;
 
-    public function __construct($name,Armor $armor = null)
+    public function __construct($name, Armor $armor = null)
     {
         parent::__construct($name);
         $this->setArmor($armor);
@@ -29,7 +31,7 @@ class Archer extends Unit
 
     public function absorbDamage($damage): float
     {
-        if ($this->armor){
+        if ($this->armor) {
             $damage = $this->armor->absorbDamage($damage);
         }
         return $damage;

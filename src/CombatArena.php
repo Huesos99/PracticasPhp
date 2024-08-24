@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-require_once 'Soldier.php';
-require_once 'Archer.php';
-require_once 'SilverArmor.php';
-require_once 'LightArmor.php';
+namespace Styde;
+
+use Styde\Armors\LightArmor;
+use Styde\Armors\SilverArmor;
+use Styde\Units\Archer;
+use Styde\Units\Soldier;
+
+require '/home/medinem/Escritorio/PhpStyde/vendor/autoload.php';
 
 final class CombatArena
 {

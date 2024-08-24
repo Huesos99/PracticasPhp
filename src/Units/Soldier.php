@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Video45;
+namespace Styde\Units;
 
-use Video45\Armor;
-use Video45\Unit;
-
-
+use Styde\Armors\Armor;
 
 final class Soldier extends Unit
 {

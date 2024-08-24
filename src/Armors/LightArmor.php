@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Video45;
-
-use Video45\Armor;
+namespace Styde\Armors;
 
 final class LightArmor implements Armor
 {
