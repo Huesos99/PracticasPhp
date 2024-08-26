@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Styde\Units;
+
 abstract class Unit
 {
     protected $health;

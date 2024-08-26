@@ -1,0 +1,17 @@
+{
+    "name": "curso-styde/poo",
+    "description": "Curso de programacion orientada a objetos",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Rodriguez"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Styde\\": "src/"
+        }
+    }
+}

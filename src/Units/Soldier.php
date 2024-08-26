@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-require_once 'Unit.php';
-require_once 'Armor.php';
+namespace Styde\Units;
+
+use Styde\Armors\Armor;
 
 final class Soldier extends Unit
 {

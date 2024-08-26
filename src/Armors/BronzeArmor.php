@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-final class SilverArmor implements Armor
+namespace Styde\Armors;
+
+final class BronzeArmor implements Armor
 {
     public function absorbDamage($damage): float
     {
-        return $damage / 3;
+        return $damage / 2;
 
     }
 }
