@@ -4,15 +4,23 @@ declare(strict_types=1);
 
 namespace Styde\Units;
 
+use Styde\Armors\Armor;
+use Styde\Weapons\Weapon;
+
 abstract class Unit
 {
     protected $health;
-    protected $damage;
     protected $name;
+    protected $armor;
+    protected $weapon;
 
-    public function __construct(string $name)
-    {
+    public function __construct
+    (
+        $name,
+        Weapon $weapon
+    ){
         $this->name = $name;
+        $this->weapon = $weapon;
     }
 
     public function getName(): string
@@ -20,12 +28,21 @@ abstract class Unit
         return $this->name;
     }
 
+    public function SetArmor(Armor $armor = null): void
+    {
+        $this->armor = $armor;
+    }
+
     public function getHealth(): float
     {
         return (float) number_format($this->health, 2);
     }
-    public abstract function attack(Unit $opponent): void;
+    public function attack(Unit $opponent): void
+    {
+        echo "{$this->weapon->getDescription($this, $opponent)}\n";
 
+        $opponent->takeDamage($this->weapon->getDamage());
+    }
     public function die()
     {
         if ($this->health <= 0) {
@@ -46,6 +63,9 @@ abstract class Unit
 
     public function absorbDamage($damage): float
     {
+        if ($this->armor){
+            $damage = $this->armor->absorbDamage($damage);
+        }
         return $damage;
     }
 

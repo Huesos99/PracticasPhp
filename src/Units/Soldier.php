@@ -4,38 +4,15 @@ declare(strict_types=1);
 
 namespace Styde\Units;
 
-use Styde\Armors\Armor;
+use Styde\Weapons\Swords\Sword;
 
 final class Soldier extends Unit
 {
     protected $health = 120;
-    protected $damage = 35;
-    protected $armor;
 
-    public function __construct($name,Armor $armor = null)
+    public function __construct($name, Sword $sword)
     {
-        parent::__construct($name);
-        $this->setArmor($armor);
-    }
-
-    public function setArmor(?Armor $armor): void
-    {
-        $this->armor = $armor;
-    }
-
-    public function attack(Unit $opponent): void
-    {
-        echo "{$this->name} attack {$opponent->getName()} \n";
-        $opponent->takeDamage($this->damage);
-
-    }
-
-    public function absorbDamage($damage): float
-    {
-        if ($this->armor){
-            $damage = $this->armor->absorbDamage($damage);
-        }
-        return $damage;
+        parent::__construct($name, $sword);
     }
 
 }

@@ -4,36 +4,15 @@ declare(strict_types=1);
 
 namespace Styde\Units;
 
-use Styde\Armors\Armor;
+use Styde\Weapons\Bows\Bow;
 
 class Archer extends Unit
 {
     protected $health = 100;
-    protected $damage = 60;
-    protected $armor;
 
-    public function __construct($name, Armor $armor = null)
+    public function __construct($name, Bow $bow)
     {
-        parent::__construct($name);
-        $this->setArmor($armor);
+        parent::__construct($name, $bow);
     }
 
-    public function setArmor(?Armor $armor): void
-    {
-        $this->armor = $armor;
-    }
-
-    public function attack(Unit $opponent): void
-    {
-        echo "{$this->name} shoots an arrow at {$opponent->getName()}\n";
-        $opponent->takeDamage($this->damage);
-    }
-
-    public function absorbDamage($damage): float
-    {
-        if ($this->armor) {
-            $damage = $this->armor->absorbDamage($damage);
-        }
-        return $damage;
-    }
 }
