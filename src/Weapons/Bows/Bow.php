@@ -8,5 +8,5 @@ use Styde\Weapons\Weapon;
 
 abstract class Bow extends Weapon
 {
-
+    //this abstract class is so that the archer can only extend from it
 }
