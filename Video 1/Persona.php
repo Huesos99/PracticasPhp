@@ -13,17 +13,14 @@ final class Persona {
         $this->lastName =  $lastName;
         $this->location =  $location;
     }
-
     public function firstName(): string
     {
         return $this->firstName;
     }
-
     public function location(): string
     {
         return $this->location;
     }
-
     public function fullName(): string // Metodo
     {
         return $this->firstName . " " . $this->lastName;
