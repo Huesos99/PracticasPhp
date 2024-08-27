@@ -25,7 +25,6 @@ final class Persona {
     {
         return $this->firstName . " " . $this->lastName;
     }
-
 }
 
 $person1 = new Persona('José', 'Rodríguez', 'San José');
