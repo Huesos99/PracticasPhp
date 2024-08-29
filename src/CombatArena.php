@@ -6,9 +6,10 @@ namespace Styde;
 
 use Styde\Armors\BronzeArmor;
 use Styde\Armors\LightArmor;
-use Styde\Units\Archer;
-use Styde\Units\Soldier;
+use Styde\Armors\SilverArmor;
+use Styde\Units\Unit;
 use Styde\Weapons\Bows\BasicBow;
+use Styde\Weapons\Bows\MagicBow;
 use Styde\Weapons\Swords\BasicSword;
 
 require '../vendor/autoload.php';
@@ -24,15 +25,15 @@ final class CombatArena
     public function __construct()
     {
         $this->basicSword = new BasicSword();
-        $this->basicBow = new BasicBow();
-        $this->soldier = new Soldier('Juan',$this->basicSword );
-        $this->archer = new Archer('Jose',$this->basicBow);
+        $this->basicBow = new MagicBow();
+        $this->soldier = new Unit('Juan',$this->basicSword );
+        $this->archer = new Unit('Jose',$this->basicBow);
     }
 
     public function startCombat(): void
     {
         $archerArmor = new LightArmor();
-        $soldierArmor = new BronzeArmor();
+        $soldierArmor = new SilverArmor();
         $this->soldier->setArmor($soldierArmor);
         $this->archer->setArmor($archerArmor);
 

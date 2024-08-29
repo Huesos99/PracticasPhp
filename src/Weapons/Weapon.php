@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Styde\Weapons;
 
-use Styde\Units\Unit;
-
 abstract class Weapon
 {
     protected $damage = 0;
+    protected $magical = false;
+    protected $description = ':unit attacks :opponent';
 
-
-    public function getDamage(): int
+    public function createAttack(): Attack
     {
-        return $this->damage;
+        return new Attack($this->damage, $this->magical, $this->description);
     }
 
-    abstract public function getDescription(Unit $attacker, Unit $opponent): string;
 }
