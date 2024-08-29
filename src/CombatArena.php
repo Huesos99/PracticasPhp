@@ -4,29 +4,38 @@ declare(strict_types=1);
 
 namespace Styde;
 
+use Styde\Armors\BronzeArmor;
 use Styde\Armors\LightArmor;
-use Styde\Armors\SilverArmor;
 use Styde\Units\Archer;
 use Styde\Units\Soldier;
+use Styde\Weapons\Bows\BasicBow;
+use Styde\Weapons\Swords\BasicSword;
 
-require '/home/medinem/Escritorio/PhpStyde/vendor/autoload.php';
+require '../vendor/autoload.php';
 
 final class CombatArena
 {
     private $round = 1;
-    private $soldierArmor;
-    private $archerArmor;
+    private $basicSword;
+    private $basicBow;
+    private $soldier;
+    private $archer;
 
     public function __construct()
     {
-        $this->archerArmor = new LightArmor();
-        $this->soldierArmor = new SilverArmor();
-        $this->soldier = new Soldier('Juan',$this->soldierArmor);
-        $this->archer = new Archer('Jose',$this->archerArmor);
+        $this->basicSword = new BasicSword();
+        $this->basicBow = new BasicBow();
+        $this->soldier = new Soldier('Juan',$this->basicSword );
+        $this->archer = new Archer('Jose',$this->basicBow);
     }
 
     public function startCombat(): void
     {
+        $archerArmor = new LightArmor();
+        $soldierArmor = new BronzeArmor();
+        $this->soldier->setArmor($soldierArmor);
+        $this->archer->setArmor($archerArmor);
+
         while ($this->soldier->getHealth() > 0 && $this->archer->getHealth() > 0) {
 
             echo "Round {$this->round} fight!!!\n";
