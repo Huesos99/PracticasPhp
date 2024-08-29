@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Styde\Units;
 
 use Styde\Armors\Armor;
+use Styde\Weapons\Attack;
 use Styde\Weapons\Weapon;
 
-abstract class Unit
+class Unit
 {
-    protected $health;
+    protected $health = 100;
     protected $name;
     protected $armor;
     protected $weapon;
@@ -39,9 +40,10 @@ abstract class Unit
     }
     public function attack(Unit $opponent): void
     {
-        echo "{$this->weapon->getDescription($this, $opponent)}\n";
+        $attack = $this->weapon->createAttack();
+        echo "{$attack->getDescription($this, $opponent)}\n";
 
-        $opponent->takeDamage($this->weapon->getDamage());
+        $opponent->takeDamage($attack);
     }
     public function die()
     {
@@ -52,21 +54,21 @@ abstract class Unit
         exit();
     }
 
-    public function takeDamage($damage): void
+    public function takeDamage(Attack $attack): void
     {
-        $this->health -= $this->absorbDamage($damage);
+        $this->health -= $this->absorbDamage($attack);
 
         if ($this->health <= 0) {
             $this->die();
         }
     }
 
-    public function absorbDamage($damage): float
+    public function absorbDamage(Attack $attack): float
     {
         if ($this->armor){
-            $damage = $this->armor->absorbDamage($damage);
+            return $this->armor->absorbDamage($attack);
         }
-        return $damage;
+        return $attack->getDamage();
     }
 
 }

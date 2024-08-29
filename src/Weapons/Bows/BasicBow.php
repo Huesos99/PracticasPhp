@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Styde\Weapons\Bows;
 
 use Styde\Units\Unit;
+use Styde\Weapons\Weapon;
 
-final class BasicBow extends Bow
+final class BasicBow extends Weapon
 {
     protected $damage = 50;
+    protected $description = ':unit shoots an arrow at :opponent';
 
-    public function getDescription(Unit $attacker, Unit $opponent): string
-    {
-        return "{$attacker->getName()} shoots an arrow at {$opponent->getName()}";
-    }
 }

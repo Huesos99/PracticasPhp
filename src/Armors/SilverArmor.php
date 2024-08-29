@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Styde\Armors;
 
+use Styde\Weapons\Attack;
+
 final class SilverArmor implements Armor
 {
-    public function absorbDamage($damage): float
+    public function absorbDamage(Attack $attack): float
     {
-        return $damage / 3;
-
+        if($attack->isPhysical()){
+            return $attack->getDamage() / 3;
+        }else{
+            return $attack->getDamage();
+        }
     }
 }

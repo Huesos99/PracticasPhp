@@ -4,19 +4,11 @@ declare(strict_types=1);
 
 namespace Styde\Weapons\Swords;
 
-use Styde\Units\Unit;
+use Styde\Weapons\Weapon;
 
-final class BasicSword extends Sword
+final class BasicSword extends Weapon
 {
     protected $damage = 30;
+    protected $description = ':unit attacks :opponent with a sword';
 
-    public function getDamage(): int
-    {
-        return $this->damage;
-    }
-
-    public function getDescription(Unit $attacker, Unit $opponent): string
-    {
-        return "{$attacker->getName()} attacks {$opponent->getName()} with a sword";
-    }
 }
