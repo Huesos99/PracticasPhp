@@ -9,7 +9,7 @@ use Styde\Weapons\Weapon;
 
 final class CrossBow extends Weapon
 {
-    protected $damage = 70;
+    protected $damage = 40;
 
     protected $description = ':unit shoots an arrow at :opponent';
 }

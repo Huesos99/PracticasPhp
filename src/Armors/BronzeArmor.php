@@ -6,11 +6,15 @@ namespace Styde\Armors;
 
 use Styde\Weapons\Attack;
 
-final class BronzeArmor implements Armor
+final class BronzeArmor extends Armor
 {
-    public function absorbDamage(Attack $attack): float
+    public function absorbPhysicalDamage(Attack $attack): float
     {
         return $attack->getDamage() / 2;
+    }
 
+    public function absorbMagicalDamage(Attack $attack): float
+    {
+        return $attack->getDamage() / 2;
     }
 }
