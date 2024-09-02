@@ -15,4 +15,9 @@ abstract class Weapon
         return new Attack($this->damage, $this->magical, $this->description);
     }
 
+    public function getName(): string
+    {
+        return basename(str_replace('\\', '/', static::class));
+    }
+
 }

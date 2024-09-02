@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Styde\Units;
 
 use Styde\Armors\Armor;
+use Styde\Armors\MissingArmor;
 use Styde\Weapons\Attack;
+use Styde\Weapons\MissingWeapon;
 use Styde\Weapons\Weapon;
 
 class Unit
@@ -14,14 +16,15 @@ class Unit
     protected $name;
     protected $armor;
     protected $weapon;
+    protected $alive = true;
 
     public function __construct
     (
-        $name,
-        Weapon $weapon
+        $name
     ){
         $this->name = $name;
-        $this->weapon = $weapon;
+        $this->weapon = new MissingWeapon();
+        $this->armor = new MissingArmor();
     }
 
     public function getName(): string
@@ -29,9 +32,14 @@ class Unit
         return $this->name;
     }
 
-    public function SetArmor(Armor $armor = null): void
+    public function setArmor(Armor $armor = null): void
     {
         $this->armor = $armor;
+    }
+
+    public function setWeapon(Weapon $weapon): void
+    {
+        $this->weapon = $weapon;
     }
 
     public function getHealth(): float
@@ -45,30 +53,19 @@ class Unit
 
         $opponent->takeDamage($attack);
     }
-    public function die()
+
+    public function isAlive(): bool
     {
         if ($this->health <= 0) {
             echo "{$this->name} has died\n";
+            exit();
         }
-
-        exit();
+        return $this->alive;
     }
 
     public function takeDamage(Attack $attack): void
     {
-        $this->health -= $this->absorbDamage($attack);
-
-        if ($this->health <= 0) {
-            $this->die();
-        }
+        $this->health -= $this->armor->absorbDamage($attack);
+        $this->isAlive();
     }
-
-    public function absorbDamage(Attack $attack): float
-    {
-        if ($this->armor){
-            return $this->armor->absorbDamage($attack);
-        }
-        return $attack->getDamage();
-    }
-
 }

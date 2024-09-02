@@ -6,15 +6,15 @@ namespace Styde\Armors;
 
 use Styde\Weapons\Attack;
 
-final class SilverArmor extends Armor
+final class MissingArmor extends Armor
 {
     public function absorbPhysicalDamage(Attack $attack): float
     {
-        return $attack->getDamage() / 1.5;
+        return $attack->getDamage();
     }
 
     public function absorbMagicalDamage(Attack $attack): float
     {
-        return $attack->getDamage() / 3;
+        return $attack->getDamage();
     }
 }

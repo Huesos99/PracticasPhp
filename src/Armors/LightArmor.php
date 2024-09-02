@@ -6,9 +6,19 @@ namespace Styde\Armors;
 
 use Styde\Weapons\Attack;
 
-final class LightArmor implements Armor
+final class LightArmor extends Armor
 {
-    public function absorbDamage(Attack $attack): float
+    public function absorbPhysicalDamage(Attack $attack): float
+    {
+        return $this->dodge($attack);
+    }
+
+    public function absorbMagicalDamage(Attack $attack): float
+    {
+        return $this->dodge($attack);
+    }
+
+    public function dodge($attack)
     {
         if (rand(0, 1)) {
             echo "dodges the attack\n";
@@ -17,4 +27,5 @@ final class LightArmor implements Armor
             return $attack->getDamage();
         }
     }
+
 }
