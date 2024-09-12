@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Styde\Weapons;
 
+use Styde\Translator;
 use Styde\Units\Unit;
 
 final class Attack
@@ -21,11 +22,10 @@ final class Attack
 
     public function getDescription(Unit $attacker, Unit $opponent): string
     {
-        return str_replace(
-            [':unit', ':opponent'],
-            [$attacker->getName(), $opponent->getName()],
-            $this->description
-        );
+       return Translator::get($this->description, [
+           'unit' => $attacker->getName(),
+           'opponent' => $opponent->getName(),
+       ]);
     }
 
     public function getDamage(): int

@@ -9,6 +9,5 @@ use Styde\Weapons\Weapon;
 final class BasicBow extends Weapon
 {
     protected $damage = 30;
-    protected $description = ':unit shoots an arrow at :opponent';
 
 }

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Styde\Units;
 
 use Styde\Armors\Armor;
+use Styde\Armors\BronzeArmor;
 use Styde\Armors\MissingArmor;
 use Styde\Weapons\Attack;
 use Styde\Weapons\MissingWeapon;
+use Styde\Weapons\Swords\BasicSword;
 use Styde\Weapons\Weapon;
 
 class Unit
@@ -30,6 +32,12 @@ class Unit
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public static function createSoldier()
+    {
+        $soldier = new Unit('Juan');
+        return $soldier;
     }
 
     public function setArmor(Armor $armor = null): void
