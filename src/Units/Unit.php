@@ -34,7 +34,7 @@ class Unit
         return $this->name;
     }
 
-    public static function createSoldier()
+    public static function createSoldier(): Unit
     {
         $soldier = new Unit('Juan');
         return $soldier;
