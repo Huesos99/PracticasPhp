@@ -26,7 +26,7 @@ final class CombatArena
 
     public function __construct()
     {
-        $this->soldier = new Unit('Juan');
+        $this->soldier = Unit::createSoldier();
         $this->archer = new Unit('Jose');
 
         $this->equipRandomSet();
@@ -40,7 +40,7 @@ final class CombatArena
 
         echo "{$this->soldier->getName()} has been equipped with "
             . $soldierArmor->getName() . " and "
-            . $soldierWeapon->getName() . "\n";
+            . $soldierWeapon->getName2() . "\n";
 
         $archerArmor = $this->getRandomArmor();
         $archerWeapon = $this->getRandomWeapon();
@@ -49,7 +49,7 @@ final class CombatArena
 
         echo "{$this->archer->getName()} has been equipped with "
             . $archerArmor->getName() . " and "
-            . $archerWeapon->getName() . "\n";
+            . $archerWeapon->getName2() . "\n";
     }
 
     private function getRandomArmor(): Armor
