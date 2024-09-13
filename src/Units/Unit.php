@@ -7,6 +7,8 @@ namespace Styde\Units;
 use Styde\Armors\Armor;
 use Styde\Armors\BronzeArmor;
 use Styde\Armors\MissingArmor;
+use Styde\Blog;
+use Styde\HtmlLogger;
 use Styde\Weapons\Attack;
 use Styde\Weapons\MissingWeapon;
 use Styde\Weapons\Swords\BasicSword;
@@ -22,8 +24,9 @@ class Unit
 
     public function __construct
     (
-        $name
-    ){
+        $name,
+
+){
         $this->name = $name;
         $this->weapon = new MissingWeapon();
         $this->armor = new MissingArmor();
@@ -57,15 +60,14 @@ class Unit
     public function attack(Unit $opponent): void
     {
         $attack = $this->weapon->createAttack();
-        echo "{$attack->getDescription($this, $opponent)}\n";
-
+        Blog::info("{$attack->getDescription($this, $opponent)}\n");
         $opponent->takeDamage($attack);
     }
 
     public function isAlive(): bool
     {
         if ($this->health <= 0) {
-            echo "{$this->name} has died\n";
+            HtmlLogger::info("{$this->name} has died\n");
             exit();
         }
         return $this->alive;
