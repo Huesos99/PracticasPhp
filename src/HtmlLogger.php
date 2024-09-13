@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Styde;
 
-final class HtmlLogger
+final class HtmlLogger implements Logger
 {
-    public static function info($message)
+    public static function info($message): void
     {
         echo "$message";
     }

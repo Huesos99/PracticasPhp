@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Styde;
 
-final class Blog
+final class Blog implements Logger
 {
-    public function info($message)
+    public static function info($message): void
     {
         file_put_contents(
             __DIR__.'/../storage/log.txt',

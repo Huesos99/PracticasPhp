@@ -26,7 +26,7 @@ final class CombatArena
 
     public function __construct()
     {
-        Log::setBlog(new Blog);
+        Log::setBlog(new Blog());
         $this->soldier = Unit::createSoldier();
         $this->archer = new Unit('Jose');
 

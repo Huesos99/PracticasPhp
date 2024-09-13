@@ -9,6 +9,7 @@ use Styde\Armors\BronzeArmor;
 use Styde\Armors\MissingArmor;
 use Styde\Blog;
 use Styde\HtmlLogger;
+use Styde\Log;
 use Styde\Weapons\Attack;
 use Styde\Weapons\MissingWeapon;
 use Styde\Weapons\Swords\BasicSword;
@@ -60,14 +61,15 @@ class Unit
     public function attack(Unit $opponent): void
     {
         $attack = $this->weapon->createAttack();
-        Blog::info("{$attack->getDescription($this, $opponent)}\n");
+
+        Log::info("{$attack->getDescription($this, $opponent)}\n");
         $opponent->takeDamage($attack);
     }
 
     public function isAlive(): bool
     {
         if ($this->health <= 0) {
-            HtmlLogger::info("{$this->name} has died\n");
+            Log::info("{$this->name} has died\n");
             exit();
         }
         return $this->alive;
