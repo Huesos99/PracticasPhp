@@ -1,3 +1,5 @@
 /vendor/
 /.idea/
 storage/
+.idea/php.xml
+.idea/workspace.xml

@@ -17,6 +17,7 @@ use Styde\Weapons\Weapon;
 
 class Unit
 {
+    private const MAX_DAMAGE = 45;
     protected $health = 100;
     protected $name;
     protected $armor;
@@ -77,7 +78,15 @@ class Unit
 
     public function takeDamage(Attack $attack): void
     {
-        $this->health -= $this->armor->absorbDamage($attack);
+        $this->setHp($this->armor->absorbDamage($attack));
+    }
+
+    private function setHp(float $damage): void
+    {
+        if ($damage > static::MAX_DAMAGE) {
+            $damage = static::MAX_DAMAGE;
+        }
+        $this->health -= $damage;
         $this->isAlive();
     }
 }
