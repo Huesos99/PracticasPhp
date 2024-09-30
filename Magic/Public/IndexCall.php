@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Magic\Public;
+
+use Magic\src\Html;
+
+require __DIR__ . '/../../vendor/autoload.php';
+
+$html = Html::textarea('Styde')
+    ->name('content')
+    ->id('contenido');
+
+echo $html->render();
+
+
+//php -S localhost:8000 -t Magic/Public
+//http://localhost:8000/IndexCall.php
