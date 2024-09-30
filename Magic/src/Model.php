@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace Magic\src;
 
-final class Model
+abstract class Model
 {
     protected $attributes = [];
 
-    public function __construct(array $attributes = [])
+    public function __construct(array $attribute = [])
     {
-        $this->attributes = $attributes;
+        $this->fill($attribute);
     }
 
-    public function setAttribute($name, $value)
+    public function fill(array $attributes = []): array
     {
-      $customSetter = 'set'.Str::studly($name).'Attribute';
+        return $this->attributes = $attributes;
+    }
+
+    public function setAttribute($name, $value): self
+    {
+        $customSetter = 'set'.Str::studly($name).'Attribute';
 
         if (method_exists($this, $customSetter)) {
             return $this->$customSetter($value);
@@ -26,29 +31,54 @@ final class Model
         return $this;
     }
 
-    public function getAttribute($name)
+    public function hasGetMutator($name): bool
     {
-        $customGetter = 'get'.Str::studly($name).'Attribute';
+       return method_exists($this, 'get'.Str::studly($name).'Attribute');
+    }
 
-        $value = array_key_exists($name, $this->attributes)
-            ? $this->attributes[$name]
-            : null;
+    public function getAttribute($name): string
+    {
+        $value = $this->getAttributeValue($name);
 
-        if (method_exists($this, $customGetter)) {
-            return $this->$customGetter($value);
+        if ($this->hasGetMutator($name)) {
+            return $this->mutateAttibute($name, $value);
         }
 
         return $value;
     }
 
-    public function __get($name)
+    public function getAttributeValue($name): string
+    {
+        if (array_key_exists($name, $this->attributes)){
+            return $this->attributes[$name];
+        }
+
+        return "";
+    }
+
+    private function mutateAttibute($name, $value): string
+    {
+        return $this->{'get' . Str::studly($name) . 'Attribute'}($value);
+    }
+
+    public function __get($name): string
     {
         return $this->getAttribute($name);
     }
 
-    public function __set($name, $value)
+    public function __set($name, $value): void
     {
-        return $this->setAttribute($name, $value);
+        $this->setAttribute($name, $value);
+    }
+
+    public function __isset($name): bool
+    {
+        return isset($this->attributes[$name]);
+    }
+
+    public function __unset($name): void
+    {
+        unset($this->attributes[$name]);
     }
 
 }
