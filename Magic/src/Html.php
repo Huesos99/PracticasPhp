@@ -29,16 +29,30 @@ final class Html
 
         return $result;
     }
-    public static function __callStatic($method, $arguments = [])
+    public static function __callStatic($method, $arguments = []): Html
     {
         $content = $arguments[0] ?? null;
 
         $attributes = $arguments[1] ?? [];
 
         return new Html($method, $content, $attributes);
-
     }
-    public function __call($method, $arguments = [])
+
+    public function __toString(): string
+    {
+        return $this->render();
+    }
+
+    public function __invoke($name,$default = null)
+    {
+       return $this->get($name,$default);
+    }
+    public function get($name, $default = null)
+    {
+        return $this->attributes[$name] ?? $default;
+    }
+
+    public function __call($method, $arguments = []): self
     {
         if (! isset($arguments[0])) {
             throw new \Exception("No se ha proporcionado un valor para el atributo {$method}");
@@ -49,7 +63,7 @@ final class Html
         return $this;
     }
 
-    private function renderAttributes()
+    private function renderAttributes(): string
     {
         $result = '';
 

@@ -12,8 +12,7 @@ $html = Html::textarea('Styde')
     ->name('content')
     ->id('contenido');
 
-echo $html->render();
-
+var_dump($html('name'), $html('long',100));
 
 //php -S localhost:8000 -t Magic/Public
 //http://localhost:8000/IndexCall.php
