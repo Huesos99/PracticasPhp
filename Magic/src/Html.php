@@ -43,11 +43,11 @@ final class Html
         return $this->render();
     }
 
-    public function __invoke($name,$default = null)
+    public function __invoke($name,$default = null): string
     {
        return $this->get($name,$default);
     }
-    public function get($name, $default = null)
+    public function get($name, $default = null): string
     {
         return $this->attributes[$name] ?? $default;
     }
