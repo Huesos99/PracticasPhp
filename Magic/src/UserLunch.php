@@ -28,7 +28,7 @@ final class UserLunch extends Model
         echo "$this->name is eating a {$this->lunch->shift()}\n";
     }
 
-    public function eatMeal()
+    public function eatMeal(): void
     {
         $total = count($this->lunch);
         echo "the lunch have {$total} foods\n";
