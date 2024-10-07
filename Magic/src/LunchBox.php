@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Magic\src;
 
-final class LunchBox
+final class LunchBox implements \IteratorAggregate, \Countable
 {
     protected $food = [];
     protected $original = true;
@@ -27,6 +27,16 @@ final class LunchBox
     public function isEmpty(): bool
     {
         return empty($this->food);
+    }
+
+    public function getIterator(): \ArrayIterator
+    {
+        return new \ArrayIterator($this->food);
+    }
+
+    public function count(): int
+    {
+        return count($this->food);
     }
 
 }

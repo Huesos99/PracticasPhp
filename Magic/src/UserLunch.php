@@ -11,7 +11,6 @@ final class UserLunch extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        //$attributes['lunch'] ?? []
         $this->lunch = new LunchBox();
     }
 
@@ -27,5 +26,15 @@ final class UserLunch extends Model
         }
 
         echo "$this->name is eating a {$this->lunch->shift()}\n";
+    }
+
+    public function eatMeal()
+    {
+        $total = count($this->lunch);
+        echo "the lunch have {$total} foods\n";
+
+       foreach ($this->lunch as $food) {
+           echo "{$this->name} is eating a {$food}\n";
+       }
     }
 }
