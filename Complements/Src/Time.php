@@ -31,6 +31,14 @@ final class Time
 
 $time = new Time();
 
+$time2 = new Time();
+
+if($time == $time2){
+    echo "son iguales\n";
+}else{
+    echo "son diferentes\n";
+}
+
     echo "hoy es $time \n";
     $tomorrow = $time->tomorrow();
     echo "mañana sera {$time->tomorrow()}\n";
