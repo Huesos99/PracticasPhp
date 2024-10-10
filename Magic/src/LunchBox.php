@@ -29,6 +29,11 @@ final class LunchBox implements \IteratorAggregate, \Countable
         return empty($this->food);
     }
 
+    public function filter(callable $callback): LunchBox
+    {
+        return new static(array_filter($this->food, $callback));
+    }
+
     public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->food);

@@ -36,7 +36,7 @@ abstract class Model
        return method_exists($this, 'get'.Str::studly($name).'Attribute');
     }
 
-    public function getAttribute($name): string
+    public function getAttribute($name): bool|string
     {
         $value = $this->getAttributeValue($name);
 
@@ -47,7 +47,7 @@ abstract class Model
         return $value;
     }
 
-    public function getAttributeValue($name): string
+    public function getAttributeValue($name): bool|string
     {
         if (array_key_exists($name, $this->attributes)){
             return $this->attributes[$name];
@@ -56,12 +56,12 @@ abstract class Model
         return "";
     }
 
-    private function mutateAttibute($name, $value): string
+    private function mutateAttibute($name, $value): bool|string
     {
         return $this->{'get' . Str::studly($name) . 'Attribute'}($value);
     }
 
-    public function __get($name): string
+    public function __get($name): bool|string
     {
         return $this->getAttribute($name);
     }

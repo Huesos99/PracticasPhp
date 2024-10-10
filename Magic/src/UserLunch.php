@@ -30,11 +30,22 @@ final class UserLunch extends Model
 
     public function eatMeal(): void
     {
-        $total = count($this->lunch);
-        echo "the lunch have {$total} foods\n";
+        $food = $this->lunch->filter(function($food) {
+            return !$food->beverage;
+        });
+        $beverage = $this->lunch->filter(function($food) {
+            return $food->beverage;
+        });
 
-       foreach ($this->lunch as $food) {
-           echo "{$this->name} is eating a {$food}\n";
+        echo "the lunch have {$food->count()} foods\n";
+        echo "the lunch have {$beverage->count()} beverage\n";
+
+       foreach ($food as $item) {
+           echo "{$this->name} is eating a {$item->name}\n";
+       }
+
+       foreach ($beverage as $item) {
+           echo "{$this->name} is drinking {$item->name}\n";
        }
     }
 }
