@@ -8,7 +8,9 @@
             "name": "Jose Rodriguez"
         }
     ],
-    "require": {},
+    "require": {
+        "nesbot/carbon": "^3.8"
+    },
     "autoload": {
         "psr-4": {
             "Styde\\": "src/",
